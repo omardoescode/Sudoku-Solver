@@ -14,17 +14,13 @@ export default function GridButton({ pos, val }: ButtonProps) {
   ) as Grid
 
   const handleClick = useCallback(() => {
-    // if (currentButton) {
-    //   setVal(currentButton)
-    //   updateGrid(pos, currentButton)
-    //   setCurrentButton(false)
-    // }
     setCurrentBox(pos)
   }, [setCurrentBox])
 
   return (
     <button
       className={`text-3xl border aspect-square
+      hover:border-4 hover:border-black
       ${range(1, 9).includes(pos) && "border-t-black"} 
       ${range(73, 81).includes(pos) && "border-b-black"} 
       ${range(46, 54).includes(pos) && "border-b-black"} 
