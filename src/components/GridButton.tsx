@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from "react"
+import { useCallback, useContext } from "react"
 import { GridContext } from "../context/grid"
 import { Grid, Val } from "../types/grid"
 import range from "../lib/range"
@@ -16,7 +16,7 @@ export default function GridButton({ pos, val }: ButtonProps) {
 
   const handleClick = useCallback(() => {
     setCurrentBox(pos)
-  }, [setCurrentBox])
+  }, [setCurrentBox, pos])
 
   return (
     <button
@@ -41,7 +41,9 @@ export default function GridButton({ pos, val }: ButtonProps) {
       onClick={handleClick}
     >
       {val ? val : ""}
-      {currentBox && currentBox == pos && type == "Creating" && <NumbersBar />}
+      {currentBox && currentBox === pos && type === "Creating" && (
+        <NumbersBar />
+      )}
     </button>
   )
 }

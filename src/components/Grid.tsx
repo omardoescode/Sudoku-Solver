@@ -12,13 +12,12 @@ export default function GridBox() {
 
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
-      console.log(e.key)
       if (!solved && currentBox) {
         if ("123456789".includes(e.key)) {
           updateGrid(currentBox, parseInt(e.key))
         } else {
           switch (e.key) {
-            case "backspace":
+            case "Backspace":
               updateGrid(currentBox, false)
               break
             case "ArrowUp":
@@ -44,7 +43,7 @@ export default function GridBox() {
     document.body.addEventListener("keydown", handleKeyDown)
 
     return () => document.body.removeEventListener("keydown", handleKeyDown)
-  }, [currentBox])
+  }, [currentBox, setCurrentBox, solved, updateGrid])
 
   return (
     <div className="w-full">
