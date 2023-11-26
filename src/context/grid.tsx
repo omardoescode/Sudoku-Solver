@@ -42,6 +42,7 @@ const GridProvider = ({ children }: { children: React.ReactNode }) => {
     setSolved(null)
     setType("Creating")
     setVals(new Array(81).fill(false))
+    setCurrentBox(null)
   }, [])
 
   return (
