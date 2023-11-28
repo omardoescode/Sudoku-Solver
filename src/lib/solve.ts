@@ -44,26 +44,26 @@ export function keep_only_valid(lobd: Val[][]) {
   return lobd.filter(valid_board)
 }
 export function valid_board(bd: Val[]) {
-  function valid_units(units: number[][]) {
-    return units.every(valid_unit)
-  }
-  function valid_unit(unit: number[]) {
-    return no_duplicates(keep_only_values(read_unit(unit)))
-  }
-  function read_unit(unit: number[]): Val[] {
-    return unit.map((pos) => bd[pos - 1])
-  }
-  function keep_only_values(lovf: Val[]): number[] {
-    return lovf.filter((val) => val !== false) as number[]
-  }
-  function no_duplicates(lov: number[]): boolean {
-    if (lov.length === 0) return true
-    for (let i = 1; i < lov.length; i++) {
-      if (lov[0] === lov[i]) return false
-    }
+  return valid_units(UNITS, bd)
+}
 
-    return no_duplicates(lov.slice(1))
+export function valid_units(units: number[][], bd: Val[]) {
+  return units.every((unit) => valid_unit(unit, bd))
+}
+export function valid_unit(unit: number[], bd: Val[]) {
+  return no_duplicates(keep_only_values(read_unit(unit, bd)))
+}
+export function read_unit(unit: number[], bd: Val[]): Val[] {
+  return unit.map((pos) => bd[pos - 1])
+}
+export function keep_only_values(lovf: Val[]): number[] {
+  return lovf.filter((val) => val !== false) as number[]
+}
+export function no_duplicates(lov: number[]): boolean {
+  if (lov.length === 0) return true
+  for (let i = 1; i < lov.length; i++) {
+    if (lov[0] === lov[i]) return false
   }
 
-  return valid_units(UNITS)
+  return no_duplicates(lov.slice(1))
 }

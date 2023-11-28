@@ -1,14 +1,17 @@
-import { useEffect, useContext } from "react"
+import { useEffect, useContext, useState } from "react"
 import { GridRange } from "../lib/range"
 import GridButton from "./GridButton"
 import { GridContext } from "../context/grid"
 import { Grid } from "../types/grid"
+import { UNITS } from "../constants/grid_constants"
+import { valid_unit } from "../lib/solve"
 
 export default function GridBox() {
   // Implementing the logic of clicking the buttons and changing the values
   const { currentBox, updateGrid, vals, solved, setCurrentBox } = useContext(
     GridContext
   ) as Grid
+  const [errorPositions, setErrorPositions] = useState<number[]>([])
 
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
@@ -45,13 +48,27 @@ export default function GridBox() {
     return () => document.body.removeEventListener("keydown", handleKeyDown)
   }, [currentBox, setCurrentBox, solved, updateGrid])
 
+  useEffect(() => {
+    const errorUnits = UNITS.filter((unit) => !valid_unit(unit, vals)).flat()
+    setErrorPositions(errorUnits)
+  }, [vals])
+
+  console.log(errorPositions)
+
   return (
     <div className="w-full">
       <div className="max-w-[800px] mx-auto">
         <div className="grid grid-cols-9 container mx-auto mt-10 auto-rows-fr">
           {GridRange.map((pos: number) => {
             const value = solved ? solved[pos - 1] : vals[pos - 1]
-            return <GridButton key={pos} pos={pos} val={value} />
+            return (
+              <GridButton
+                key={pos}
+                pos={pos}
+                val={value}
+                isError={errorPositions.includes(pos)}
+              />
+            )
           })}
         </div>
       </div>

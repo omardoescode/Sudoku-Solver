@@ -7,9 +7,10 @@ import NumbersBar from "./NumbersBar"
 interface ButtonProps {
   pos: number
   val: Val
+  isError: boolean
 }
 
-export default function GridButton({ pos, val }: ButtonProps) {
+export default function GridButton({ pos, val, isError }: ButtonProps) {
   const { currentBox, setCurrentBox, vals, solved, type } = useContext(
     GridContext
   ) as Grid
@@ -20,7 +21,7 @@ export default function GridButton({ pos, val }: ButtonProps) {
 
   return (
     <button
-      className={`text-4xl font-medium border aspect-square hover:border-4 hover:border-indigo-900 relative
+      className={`text-4xl font-medium border aspect-square hover:border-4 hover:border-indigo-900 relative outline-none
       ${range(1, 9).includes(pos) && "border-t-black"} 
       ${range(73, 81).includes(pos) && "border-b-black"} 
       ${range(46, 54).includes(pos) && "border-b-black"} 
@@ -37,12 +38,13 @@ export default function GridButton({ pos, val }: ButtonProps) {
           ? "text-purple-500"
           : "text-black"
       }
+      ${isError && "bg-red-500 text-white"}
        `}
       onClick={handleClick}
     >
       {val ? val : ""}
       {currentBox && currentBox === pos && type === "Creating" && (
-        <NumbersBar />
+        <NumbersBar pos={pos} />
       )}
     </button>
   )

@@ -5,7 +5,10 @@ import { GridContext } from "../context/grid"
 import { Grid } from "../types/grid"
 import { FaEraser } from "react-icons/fa"
 
-export default function NumbersBar() {
+interface NumbersBarProps {
+  pos: number
+}
+export default function NumbersBar({ pos }: NumbersBarProps) {
   const { updateGrid, currentBox, setCurrentBox } = useContext(
     GridContext
   ) as Grid
@@ -16,7 +19,15 @@ export default function NumbersBar() {
     }
   }
   return (
-    <div className="absolute -bottom-full rounded bg-indigo-200 p-2 shadow-lg flex items-center gap-1 z-10 -left-24">
+    <div
+      className={`absolute -bottom-full rounded bg-indigo-200 p-2 shadow-lg flex items-center gap-1 z-10 ${
+        (pos % 9) + 1 < 3
+          ? "left-0"
+          : (pos % 9) + 1 < 6
+          ? "left-1/2"
+          : "right-0"
+      }`}
+    >
       {range(1, 9).map((val) => (
         <Button
           className={"text-lg px-4 aspect-square"}
