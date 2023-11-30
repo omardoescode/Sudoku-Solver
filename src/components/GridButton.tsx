@@ -39,6 +39,10 @@ export default function GridButton({ pos, val, isError }: ButtonProps) {
           : "text-black"
       }
       ${isError ? "bg-red-500 text-white" : ""}
+      ${pos === 1 ? "rounded-tl-md" : ""}
+      ${pos === 9 ? "rounded-tr-md" : ""}
+      ${pos === 73 ? "rounded-bl-md" : ""}
+      ${pos === 81 ? "rounded-br-md" : ""}
        `}
       onClick={handleClick}
     >
