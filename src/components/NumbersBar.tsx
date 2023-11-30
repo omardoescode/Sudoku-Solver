@@ -20,7 +20,7 @@ export default function NumbersBar({ pos }: NumbersBarProps) {
   }
   return (
     <div
-      className={`absolute -bottom-full rounded bg-indigo-200 p-2 shadow-lg flex items-center gap-1 z-10 ${
+      className={`absolute -bottom-full rounded bg-indigo-200 p-2 shadow-lg flex flex-row items-center gap-1 z-10 ${
         pos % 9 === 0
           ? "right-0"
           : pos % 9 <= 3
@@ -32,17 +32,14 @@ export default function NumbersBar({ pos }: NumbersBarProps) {
     >
       {range(1, 9).map((val) => (
         <Button
-          className={"text-lg px-4 aspect-square"}
+          className={"text-sm md:text-lg px-4 aspect-square flex-1 h-auto"}
           key={val}
           onClick={() => handleClick(val)}
         >
           {val}
         </Button>
       ))}
-      <Button
-        className={"text-lg px-[13px] aspect-square"}
-        onClick={() => handleClick(false)}
-      >
+      <Button className={"text-lg flex-1"} onClick={() => handleClick(false)}>
         <FaEraser />
       </Button>
     </div>

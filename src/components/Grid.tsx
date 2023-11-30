@@ -56,21 +56,19 @@ export default function GridBox() {
   console.log(errorPositions)
 
   return (
-    <div className="w-full">
-      <div className="max-w-[800px] mx-auto">
-        <div className="grid grid-cols-9 container mx-auto mt-10 auto-rows-fr">
-          {GridRange.map((pos: number) => {
-            const value = solved ? solved[pos - 1] : vals[pos - 1]
-            return (
-              <GridButton
-                key={pos}
-                pos={pos}
-                val={value}
-                isError={errorPositions.includes(pos)}
-              />
-            )
-          })}
-        </div>
+    <div className="max-w-[800px] mx-auto">
+      <div className="grid grid-cols-9 container mx-auto mt-10 auto-rows-fr">
+        {GridRange.map((pos: number) => {
+          const value = solved ? solved[pos - 1] : vals[pos - 1]
+          return (
+            <GridButton
+              key={pos}
+              pos={pos}
+              val={value}
+              isError={errorPositions.includes(pos)}
+            />
+          )
+        })}
       </div>
     </div>
   )

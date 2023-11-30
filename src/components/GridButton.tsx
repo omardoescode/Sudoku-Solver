@@ -2,7 +2,7 @@ import { useCallback, useContext } from "react"
 import { GridContext } from "../context/grid"
 import { Grid, Val } from "../types/grid"
 import range from "../lib/range"
-import NumbersBar from "./NumbersBar"
+// import NumbersBar from "./NumbersBar"
 
 interface ButtonProps {
   pos: number
@@ -11,7 +11,7 @@ interface ButtonProps {
 }
 
 export default function GridButton({ pos, val, isError }: ButtonProps) {
-  const { currentBox, setCurrentBox, vals, solved, type } = useContext(
+  const { currentBox, setCurrentBox, vals, solved } = useContext(
     GridContext
   ) as Grid
 
@@ -47,9 +47,9 @@ export default function GridButton({ pos, val, isError }: ButtonProps) {
       onClick={handleClick}
     >
       {val ? val : ""}
-      {currentBox && currentBox === pos && type === "Creating" && (
+      {/* {currentBox && currentBox === pos && type === "Creating" && (
         <NumbersBar pos={pos} />
-      )}
+      )} */}
     </button>
   )
 }
