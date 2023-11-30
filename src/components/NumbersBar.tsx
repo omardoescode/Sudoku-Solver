@@ -21,10 +21,12 @@ export default function NumbersBar({ pos }: NumbersBarProps) {
   return (
     <div
       className={`absolute -bottom-full rounded bg-indigo-200 p-2 shadow-lg flex items-center gap-1 z-10 ${
-        (pos % 9) + 1 < 3
+        pos % 9 === 0
+          ? "right-0"
+          : (pos % 9) + 1 < 3
           ? "left-0"
           : (pos % 9) + 1 < 6
-          ? "left-1/2"
+          ? "-left-1/2"
           : "right-0"
       }`}
     >

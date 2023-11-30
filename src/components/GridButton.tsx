@@ -22,15 +22,15 @@ export default function GridButton({ pos, val, isError }: ButtonProps) {
   return (
     <button
       className={`text-4xl font-medium border aspect-square hover:border-4 hover:border-indigo-900 relative outline-none
-      ${range(1, 9).includes(pos) && "border-t-black"} 
-      ${range(73, 81).includes(pos) && "border-b-black"} 
-      ${range(46, 54).includes(pos) && "border-b-black"} 
-      ${range(19, 27).includes(pos) && "border-b-black"} 
+      ${range(1, 9).includes(pos) ? "border-t-black" : ""} 
+      ${range(73, 81).includes(pos) ? "border-b-black" : ""} 
+      ${range(46, 54).includes(pos) ? "border-b-black" : ""} 
+      ${range(19, 27).includes(pos) ? "border-b-black" : ""} 
       
-      ${pos % 9 === 0 && "border-r-black"}
-      ${pos % 9 === 1 && "border-l-black"}
-      ${pos % 9 === 3 && "border-r-black"}
-      ${pos % 9 === 6 && "border-r-black"}
+      ${pos % 9 === 0 ? "border-r-black" : ""}
+      ${pos % 9 === 1 ? "border-l-black" : ""}
+      ${pos % 9 === 3 ? "border-r-black" : ""}
+      ${pos % 9 === 6 ? "border-r-black" : ""}
 
       ${currentBox === pos ? "border-4 border-indigo-900" : ""}
       ${
@@ -38,7 +38,7 @@ export default function GridButton({ pos, val, isError }: ButtonProps) {
           ? "text-purple-500"
           : "text-black"
       }
-      ${isError && "bg-red-500 text-white"}
+      ${isError ? "bg-red-500 text-white" : ""}
        `}
       onClick={handleClick}
     >
