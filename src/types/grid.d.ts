@@ -1,5 +1,4 @@
 export type Val = number | false
-export type Type = "Creating" | "Solved" | "Wrong Sudoko"
 export interface Grid {
   vals: Val[]
   // currentButton: number | false
@@ -10,5 +9,4 @@ export interface Grid {
   updateGrid: (pos: number, val: Val) => void
   solveSudoku: () => void
   solved: Val[] | false | null
-  type: Type
 }

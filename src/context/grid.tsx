@@ -1,7 +1,9 @@
-import React, { createContext, useCallback, useState } from "react"
+import React, { createContext, useCallback, useContext, useState } from "react"
 import solve from "../lib/solve"
 
-import { Val, Grid, Type } from "../types/grid"
+import { Val, Grid } from "../types/grid"
+import { GlobalsContext } from "./globals"
+import { Globals, Type } from "../types/global_state"
 
 export const GridContext = createContext<Grid | null>(null)
 
@@ -9,7 +11,7 @@ const GridProvider = ({ children }: { children: React.ReactNode }) => {
   const [vals, setVals] = useState<Val[]>(new Array(81).fill(false))
   const [solved, setSolved] = useState<Val[] | null | false>(null)
   const [currentBox, setCurrentBox] = useState<number | null>(null)
-  const [type, setType] = useState<Type>("Creating")
+  const { setType } = useContext(GlobalsContext) as Globals
 
   const updateGrid = useCallback(
     (pos: number, val: Val) => {
@@ -32,15 +34,15 @@ const GridProvider = ({ children }: { children: React.ReactNode }) => {
     setSolved(solution)
 
     if (solution) {
-      setType("Solved")
+      setType(Type.SOLVED)
     } else {
-      setType("Wrong Sudoko")
+      setType(Type.WRONG_SUDOKU)
     }
   }, [vals])
 
   const restartGame = useCallback(() => {
     setSolved(null)
-    setType("Creating")
+    setType(Type.CREATING)
     setVals(new Array(81).fill(false))
     setCurrentBox(null)
   }, [])
@@ -48,7 +50,6 @@ const GridProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <GridContext.Provider
       value={{
-        type,
         vals,
         currentBox,
         setCurrentBox,

@@ -9,7 +9,6 @@ export default function ValButtons() {
   const handleClick = (val: number | false) => {
     if (!solved && currentBox) {
       updateGrid(currentBox, val)
-      // setCurrentBox(null)
     }
   }
   return (
@@ -17,7 +16,7 @@ export default function ValButtons() {
       <div className="container mx-auto flex items-center justify-center gap-2">
         <button
           className={`text-indigo-700 p-4 rounded-md border-0 text-2xl flex flex-col items-center transition hover:bg-indigo-100`}
-          key={""}
+          key={"Erase"}
           onClick={() => handleClick(false)}
         >
           <FaEraser />
@@ -25,18 +24,18 @@ export default function ValButtons() {
         </button>
         <button
           className={`text-indigo-700 p-4 rounded-md border-0 text-2xl flex flex-col items-center transition hover:bg-indigo-100`}
-          key={""}
+          key={"Save"}
           onClick={() => handleClick(false)}
         >
           <FaSave />
           <span className="text-sm">Save</span>
         </button>
       </div>
-      <div className="grid grid-cols-9 container mx-auto mt-10 gap-2">
+      <div className="grid grid-cols-9 container mx-auto gap-1 md:gap-2">
         <>
           {range(1, 9).map((val: number) => (
             <button
-              className={`bg-indigo-600 text-white p-4 rounded-md border-0 text-2xl transition hover:bg-indigo-500`}
+              className={`text-indigo-700 p-4 rounded-md border-0 text-4xl flex flex-col items-center transition hover:bg-indigo-100`}
               key={val}
               onClick={() => handleClick(val)}
             >
