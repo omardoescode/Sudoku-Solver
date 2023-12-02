@@ -8,7 +8,9 @@ import { Globals, Type } from "../types/global_state"
 export const GridContext = createContext<Grid | null>(null)
 
 const GridProvider = ({ children }: { children: React.ReactNode }) => {
-  const [vals, setVals] = useState<Val[]>(new Array(81).fill(false))
+  const [vals, setVals] = useState<Val[]>(
+    Array.from({ length: 81 }, () => false)
+  )
   const [solved, setSolved] = useState<Val[] | null | false>(null)
   const [currentBox, setCurrentBox] = useState<number | null>(null)
   const { setType } = useContext(GlobalsContext) as Globals
@@ -16,8 +18,6 @@ const GridProvider = ({ children }: { children: React.ReactNode }) => {
   const updateGrid = useCallback(
     (pos: number, val: Val) => {
       setVals((prevVals) => {
-        // prevVals[pos - 1] = val
-        // return prevVals
         const before = prevVals.slice(0, pos - 1) // Use slice to create a new array
         const after = prevVals.slice(pos) // Use slice without the second parameter to get the rest of the array
         return [...before, val, ...after]

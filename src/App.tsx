@@ -1,17 +1,16 @@
-import React from "react"
 import Navbar from "./components/Navbar"
-import Grid from "./components/Grid"
 import ValButtons from "./components/ValButtons"
 import GridProvider from "./context/grid"
-import GlobalsProvidor from "./context/globals"
+import GlobalsProvidor, { GlobalsContext } from "./context/globals"
+import AskingName from "./components/Pages/AskingName"
+import CurrentPage from "./components/CurrentPage"
 
 function App() {
   return (
     <GlobalsProvidor>
       <GridProvider>
         <Navbar />
-        <Grid />
-        <ValButtons />
+        <CurrentPage />
       </GridProvider>
     </GlobalsProvidor>
   )

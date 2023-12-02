@@ -1,10 +1,10 @@
 import { useEffect, useContext, useState } from "react"
-import { GridRange } from "../lib/range"
-import GridButton from "./GridButton"
-import { GridContext } from "../context/grid"
-import { Grid } from "../types/grid"
-import { UNITS } from "../constants/grid_constants"
-import { valid_unit } from "../lib/solve"
+import { GridRange } from "../../lib/range"
+import GridButton from "../GridButton"
+import { GridContext } from "../../context/grid"
+import { Grid } from "../../types/grid"
+import { UNITS } from "../../constants/grid_constants"
+import { valid_unit } from "../../lib/solve"
 
 export default function GridBox() {
   // Implementing the logic of clicking the buttons and changing the values
@@ -52,8 +52,6 @@ export default function GridBox() {
     const errorUnits = UNITS.filter((unit) => !valid_unit(unit, vals)).flat()
     setErrorPositions(errorUnits)
   }, [vals])
-
-  console.log(errorPositions)
 
   return (
     <div className="max-w-[800px] mx-auto">
