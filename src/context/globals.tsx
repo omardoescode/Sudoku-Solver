@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react"
+import { createContext, ReactNode, useState, useEffect } from "react"
 import { Globals, Theme, Type } from "../types/global_state"
 
 export const GlobalsContext = createContext<Globals | null>(null)
@@ -9,11 +9,16 @@ const GlobalsProvidor = ({ children }: { children: ReactNode }) => {
   )
   const [name, setName] = useState<string>(localStorage.getItem("name") ?? "")
   const [theme, setTheme] = useState<Theme>(
-    (localStorage.getItem("theme") as Theme) ?? Theme.SYSTEM
+    (localStorage.getItem("theme") as Theme) ?? Theme.LIGHT
   )
 
+  useEffect(() => {
+    localStorage.setItem("name", name)
+  }, [name])
   return (
-    <GlobalsContext.Provider value={{ type, name, theme, setType }}>
+    <GlobalsContext.Provider
+      value={{ type, name, theme, setType, setName, setTheme }}
+    >
       {children}
     </GlobalsContext.Provider>
   )

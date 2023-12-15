@@ -1,7 +1,7 @@
 import { UNITS } from "../constants/grid_constants"
 import { Val } from "../types/grid"
 export default function solve(bd: Val[]): Val[] | false {
-  function sovle__bd(bd: Val[]) {
+  function solve__bd(bd: Val[]): Val[] | false {
     if (solved(bd)) return bd
     return solve__lobd(next_boards(bd))
   }
@@ -13,7 +13,7 @@ export default function solve(bd: Val[]): Val[] | false {
     return solve__lobd(lobd.slice(1))
   }
 
-  return sovle__bd(bd)
+  return solve__bd(bd)
 }
 
 export function solved(bd: Val[]): boolean {

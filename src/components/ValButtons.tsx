@@ -2,7 +2,8 @@ import { useContext } from "react"
 import range from "../lib/range"
 import { GridContext } from "../context/grid"
 import { Grid } from "../types/grid"
-import { FaEraser, FaSave } from "react-icons/fa"
+import { Button } from "./ui/button"
+import { Eraser } from "lucide-react"
 
 export default function ValButtons() {
   const { updateGrid, currentBox, solved } = useContext(GridContext) as Grid
@@ -11,36 +12,25 @@ export default function ValButtons() {
       updateGrid(currentBox, val)
     }
   }
+
   return (
     <div className="max-w-[800px] mx-auto mt-2">
-      <div className="container mx-auto flex items-center justify-center gap-2">
-        <button
-          className={`text-indigo-700 p-4 rounded-md border-0 text-2xl flex flex-col items-center transition hover:bg-indigo-100`}
-          key={"Erase"}
-          onClick={() => handleClick(false)}
-        >
-          <FaEraser />
-          <span className="text-sm">erase</span>
-        </button>
-        <button
-          className={`text-indigo-700 p-4 rounded-md border-0 text-2xl flex flex-col items-center transition hover:bg-indigo-100`}
-          key={"Save"}
-          onClick={() => handleClick(false)}
-        >
-          <FaSave />
-          <span className="text-sm">Save</span>
-        </button>
+      <div className="container mx-auto inline-flex items-center justify-center">
+        <Button className="" variant={"outline"}>
+          <Eraser />
+        </Button>
       </div>
-      <div className="grid grid-cols-9 container mx-auto gap-1 md:gap-2">
+      <div className="grid grid-cols-9 container mx-auto gap-1 md:gap-2 w-full">
         <>
           {range(1, 9).map((val: number) => (
-            <button
-              className={`text-indigo-700 p-4 rounded-md border-0 text-4xl flex flex-col items-center transition hover:bg-indigo-100`}
+            <Button
+              variant={"outline"}
+              className={`text-indigo-700 hover:text-white p-4 rounded-md border-0 text-4xl flex flex-col items-center transition dark:text-white`}
               key={val}
               onClick={() => handleClick(val)}
             >
               {val}
-            </button>
+            </Button>
           ))}
         </>
       </div>

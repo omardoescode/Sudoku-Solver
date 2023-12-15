@@ -29,8 +29,6 @@ const GridProvider = ({ children }: { children: React.ReactNode }) => {
   const solveSudoku = useCallback(() => {
     if (vals.every((val) => val === false)) return
     const solution = solve(vals)
-    console.log(solution)
-
     setSolved(solution)
 
     if (solution) {
@@ -38,14 +36,14 @@ const GridProvider = ({ children }: { children: React.ReactNode }) => {
     } else {
       setType(Type.WRONG_SUDOKU)
     }
-  }, [vals])
+  }, [vals, setType])
 
   const restartGame = useCallback(() => {
     setSolved(null)
     setType(Type.CREATING)
     setVals(new Array(81).fill(false))
     setCurrentBox(null)
-  }, [])
+  }, [setType])
 
   return (
     <GridContext.Provider
