@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import range from "../lib/range"
-import Button from "./Button"
+import { Button } from "./ui/button"
 import { GridContext } from "../context/grid"
 import { Grid } from "../types/grid"
 import { FaEraser } from "react-icons/fa"

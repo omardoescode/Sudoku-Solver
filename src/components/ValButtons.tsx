@@ -16,7 +16,11 @@ export default function ValButtons() {
   return (
     <div className="max-w-[800px] mx-auto mt-2">
       <div className="container mx-auto inline-flex items-center justify-center">
-        <Button className="" variant={"outline"}>
+        <Button
+          className=""
+          variant={"outline"}
+          onClick={() => handleClick(false)}
+        >
           <Eraser />
         </Button>
       </div>
