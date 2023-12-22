@@ -55,7 +55,7 @@ export default function GridBox() {
 
   return (
     <div className="max-w-[800px] mx-auto">
-      <div className="grid grid-cols-9 container mx-auto mt-10 auto-rows-fr">
+      <div className="grid grid-cols-9 container mx-auto mt-10 auto-rows-fr box-border">
         {GridRange.map((pos: number) => {
           const value = solved ? solved[pos - 1] : vals[pos - 1]
           return (

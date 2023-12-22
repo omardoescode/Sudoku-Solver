@@ -3,6 +3,9 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  box-sizing: content-box;
+}
 body.show-navbar {
   @apply translate-x-64;
 }
